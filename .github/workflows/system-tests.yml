@@ -24,5 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run tests
-        run: python -m pytest -v
+      - name: Run System Tests
+        working-directory: system-tests
+        run: |
+          echo "Starting server in background..."
+          python squirrel_server.py &
+          sleep 2
+          echo "Running system tests..."
+          python -m pytest -v
