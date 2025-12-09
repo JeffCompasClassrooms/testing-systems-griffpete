@@ -24,4 +24,4 @@ jobs:
           python squirrel_server.py &
           sleep 2
           echo "Running system tests..."
-          python -m pytest -v
+          python -m pytest test_mydb.py test_squirrel_server.py -v
