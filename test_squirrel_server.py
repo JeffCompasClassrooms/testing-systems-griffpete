@@ -122,6 +122,14 @@ def describe_SquirrelServer():
             squirrels = list_response.json()
             assert squirrels[0]["id"] != squirrels[1]["id"]
 
+        def returns_400_when_name_missing(server, base_url):
+            response = requests.post(f"{base_url}/squirrels", data={"size": "large"})
+            assert response.status_code == 400
+    
+        def returns_400_when_size_missing(server, base_url):
+            response = requests.post(f"{base_url}/squirrels", data={"name": "Fluffy"})
+            assert response.status_code == 400
+
 
     def describe_PUT_squirrel():
         def returns_204(server, base_url):
